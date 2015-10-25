@@ -35,8 +35,14 @@ function finalinput(){
               console.log("APPEND");
               //FIX STRING
               //"<div style='display:flex;justify-contents:center;align-items:center'><img src='http://media.steampowered.com/steamcommunity/public/images/apps/"+data[g].appid+"/"+data[g].img_logo_url+".jpg></img></div>")
-              $("#dark_black").append("<div class='finalcontainer'><img src='http://media.steampowered.com/steamcommunity/public/images/apps/"+data[g].appid+"/"+data[g].img_logo_url+".jpg' /></div>")
-            }
+                if(g % 2 > 0){
+                  $("#dark_black").append("<div class='helpercontainer' id='input_container_"+g+"'></div>");
+                    $("#input_container_"+g).append("<a href='http://store.steampowered.com/app/"+data[g].appid+"' style='justify-content:flex-start;width:100%;'class='finalcontainer' style='justify-content:flex-start' id='"+g+"_input"+"'><img class = 'image' src='http://media.steampowered.com/steamcommunity/public/images/apps/"+data[g].appid+"/"+data[g].img_logo_url+".jpg' /><p class='info_name'>"+data[g].name+"</p></a>")
+                }
+                else{
+                  $("#input_container_"+(g-1)).append("<a href='http://store.steampowered.com/app/"+data[g].appid+"' class='finalcontainer' style='justify-content:flex-end' id='"+g+"_input"+"'><p class='info_name'>"+data[g].name+"</p><img class = 'image'src='http://media.steampowered.com/steamcommunity/public/images/apps/"+data[g].appid+"/"+data[g].img_logo_url+".jpg' /></a>").removeAttr('style')
+                }
+              }
           }
         });
     });
@@ -60,8 +66,7 @@ $(document).ready(function(){
   for(var a = 0;a<2;a++)
     createinput();
     $("#panel").css("top","100vh");
-    $("#panel").css("height",$('html').height()-$("#top_bar").height())
 });
 window.onresize = function(){
-    $("#panel").css("height",$('html').height()-$("#top_bar").height())
+
 };
